@@ -1,0 +1,74 @@
+<div class="container">
+  <form (ngSubmit)="submit()" [formGroup]="formTeacher">
+    <h2>Ajouter un professeur</h2>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="name">Nom</mat-label>
+        <input matInput type="text" id="name" name="nom" formControlName="nom"/>
+        @if (isFieldValid('name')) {
+          <mat-error>Le nom est requis</mat-error>
+        }
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="prenom">Prénom</mat-label>
+        <input matInput type="text" id="prenom" name="prenom" formControlName="prenom"/>
+        @if (isFieldValid('prenom')) {
+          <mat-error>Le prénom est requis</mat-error>
+        }
+      </mat-form-field></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field>
+        <mat-label for="genre">Genre</mat-label>
+        <mat-select id="genre" name="genre" formControlName="genre">
+          @for (genre of genre; track genre) {
+            <mat-option [value]="genre.value">{{genre.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field></td>
+      <td><mat-form-field class="form-field">
+        <mat-label for="matiere">Matiere</mat-label>
+        <mat-select id="matiere" name="matiere" formControlName="matiere">
+          <input matInput type="text" id="metiere" name="matiere" formControlName="matiere"/>
+          @for (matiere of matieres; track matiere) {
+            <mat-option [value]="matiere.value">{{matiere.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field></td>
+    </tr></table>
+    <mat-form-field class="form-field">
+      <mat-label for="age">Age</mat-label>
+      <input matInput type="number" id="age" name="age" formControlName="age"/>
+      @if (isFieldValid('age')) {
+        <mat-error>Cet age est invalide</mat-error>
+      }
+    </mat-form-field>
+    <label class="form-field">Vacant</label>
+    <mat-radio-group aria-label="Select an option" formControlName="vacant">
+      <mat-radio-button value="true">Oui</mat-radio-button>
+      <mat-radio-button value="flase">Non</mat-radio-button>
+    </mat-radio-group>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="ville">Ville</mat-label>
+        <input matInput type="text" id="ville" name="telephone" formControlName="ville"/>
+        @if (isFieldValid('ville')) {
+          <mat-error>Cette ville est invalide</mat-error>
+        }
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="telephone">Téléphone du père ou du tuteur</mat-label>
+        <span matTextPrefix>+225 &nbsp;</span>
+        <input type="tel" id="telephone" name="telephone" matInput placeholder="0701010709" formControlName="telephone"/>
+        @if (isFieldValid('telephone')) {
+          <div class="error">Cet numéro est invalide</div>
+        }
+      </mat-form-field></td>
+    </tr></table>
+
+    <div class="button-container">
+      <button mat-button type="button" (click)="navigateBack()">Retour</button>
+      <button mat-flat-button type="submit" [disabled]="formTeacher.invalid">Sauvegarder</button>
+    </div>
+  </form>
+</div>

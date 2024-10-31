@@ -1,0 +1,32 @@
+<div class="container">
+  <form (ngSubmit)="submit()" [formGroup]="formUser">
+    <h2>Ajouter un utilisateur</h2>
+    <mat-form-field>
+      <mat-label for="pseudo">Pseudo</mat-label>
+      <input matInput type="text" id="pseudo" name="pseudo" formControlName="pseudo"/>
+      @if (isFieldValid('pseudo')) {
+        <mat-error>Cet pseudo est invalide</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="motDePasse">Mot de passe</mat-label>
+      <input matInput type="text" id="motDePasse" name="motDePasse" formControlName="motDePasse"/>
+      @if (isFieldValid('motDePasse')) {
+        <mat-error>Ce mot de passe est invalide</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="confirmerMotDePasse">Confirmer mot de passe</mat-label>
+      <input matInput type="text" id="confirmerMotDePasse" name="confirmerMotDePasse" formControlName="confirmerMotDePasse"/>
+      @if (isFieldValid('confirmerMotDePasse')) {
+        <mat-error>Ce mot de passe est invalide</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button type="button" (click)="navigateBack()">Retour</button>
+      <button mat-flat-button type="submit" [disabled]="formUser.invalid">Sauvegarder</button>
+    </div>
+  </form>
+</div>
+

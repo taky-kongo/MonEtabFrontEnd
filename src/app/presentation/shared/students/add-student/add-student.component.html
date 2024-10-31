@@ -1,0 +1,73 @@
+<div class="container">
+  <form (ngSubmit)="submit()" [formGroup]="formStudent">
+    <h2>Ajouter un élève</h2>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="name">Nom</mat-label>
+        <input matInput type="text" id="name" name="nom" formControlName="name"/>
+        @if (isFieldValid('name')) {
+          <mat-error>Le nom est requis</mat-error>
+        }
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="prenom">Prénom</mat-label>
+        <input matInput type="text" id="prenom" name="prenom" formControlName="prenom"/>
+        @if (isFieldValid('prenom')) {
+          <mat-error>Le prénom est requis</mat-error>
+        }
+      </mat-form-field></td>
+    </tr></table>
+    <mat-form-field>
+      <mat-label for="genre">Genre</mat-label>
+      <mat-select id="genre" name="genre" formControlName="genre">
+        @for (genre of genre; track genre) {
+          <mat-option [value]="genre.value">{{genre.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="matricule">Matricule</mat-label>
+      <input matInput type="text" id="matricule" name="matricule" formControlName="matricule"/>
+      @if (isFieldValid('matricule')) {
+        <mat-error>Cet matricule est invalide</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choisir une date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date_naissance">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="classe">Classe</mat-label>
+      <mat-select id="classe" name="classe" formControlName="classe">
+        @for (classe of classe; track classe) {
+          <mat-option [value]="classe.value">{{classe.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="ville">Ville</mat-label>
+        <input matInput type="text" id="ville" name="telephone" formControlName="ville"/>
+        @if (isFieldValid('ville')) {
+          <mat-error>Cette ville est invalide</mat-error>
+        }
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <mat-label for="telephone">Téléphone du père ou du tuteur</mat-label>
+        <span matTextPrefix>+225 &nbsp;</span>
+        <input type="tel" id="telephone" name="telephone" matInput placeholder="0701010709" formControlName="telephone"/>
+        @if (isFieldValid('telephone')) {
+          <div class="error">Cet numéro est invalide</div>
+        }
+      </mat-form-field></td>
+    </tr></table>
+
+    <div class="button-container">
+      <button mat-button type="button" (click)="navigateBack()">Retour</button>
+      <button mat-flat-button type="submit" [disabled]="formStudent.invalid">Sauvegarder</button>
+    </div>
+  </form>
+</div>

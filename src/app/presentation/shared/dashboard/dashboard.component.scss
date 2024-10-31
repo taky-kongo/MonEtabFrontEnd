@@ -1,0 +1,27 @@
+h1 {
+  font-size: 2.1rem;
+  margin-left: 80px;
+}
+.tile {
+  width: 450px;
+  height: 250px;
+  background: rgb(67 83 113);
+  padding: 10px;
+  margin: 15px 15px 15px 0;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
